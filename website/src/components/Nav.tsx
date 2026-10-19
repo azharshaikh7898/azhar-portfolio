@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, Moon, Sun, X } from 'lucide-react'
 
-const items = ['about', 'skills', 'projects', 'services', 'github', 'contact']
+const items = ['about', 'skills', 'projects', 'github', 'services', 'contact']
 
 export default function Nav() {
   const [open, setOpen] = useState(false)

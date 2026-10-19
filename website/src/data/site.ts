@@ -6,6 +6,8 @@ export const links = {
   kworksProfile: 'https://kwork.com/user/azharshaikhshaikh78', // paste your Kworks profile URL (empty = hidden)
 }
 
+// Shown as a badge in the hero. Set to '' to hide it.
+export const availability = ''
 export const currency = '$'
 
 export type Service = { title: string; icon: 'terminal' | 'flask' | 'box'; scope: string; deliverables: string[]; startingPrice: number; kworksUrl: string }
@@ -18,9 +20,11 @@ export const services: Service[] = [
     deliverables: ['Dockerfile', 'Docker Compose setup', 'Env-based configuration', 'Run instructions and basic troubleshooting'], startingPrice: 25, kworksUrl: '' },
 ]
 
-export type Project = { title: string; category: 'AI' | 'DevOps' | 'Backend' | 'Automation' | 'Testing' | 'Docker'; featured?: boolean; status?: 'Demo' | 'Work in progress'; description: string; tech: string[]; features?: string[]; path?: string; repo?: string; demo?: string }
+export type Project = { title: string; category: 'Full Stack' | 'AI' | 'DevOps' | 'Backend' | 'Automation' | 'Testing' | 'Docker'; featured?: boolean; status?: 'Demo' | 'Work in progress'; description: string; tech: string[]; features?: string[]; path?: string; repo?: string; demo?: string }
 const gh = 'https://github.com/azharshaikh7898/'
 export const projects: Project[] = [
+  { title: 'This Portfolio Website', category: 'Full Stack', featured: true, description: 'Responsive, accessible portfolio with dark/light theme, filterable project cards and a data-driven content layer.', tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    features: ['Typed data model in one file', 'Mobile-first responsive layout', 'Theme toggle with persisted preference'], repo: gh + 'azhar-portfolio' },
   // Real repositories. Add `features`, more `tech` and a `demo` URL to any card once you want to show more detail.
   { title: 'AI-Powered Mock Interview Platform', category: 'AI', featured: true, description: 'An AI-powered platform for practising mock interviews.', tech: ['AI'], repo: gh + 'mock' },
   { title: 'RecipeHub - AI Food Recognition App', category: 'AI', featured: true, description: 'An app that uses AI to recognise food.', tech: ['AI', 'Food Recognition'], repo: gh + 'recipe_hub' },
@@ -38,12 +42,13 @@ export const projects: Project[] = [
     features: ['Health endpoint', 'Environment-variable configuration', 'Dockerfile and Compose file', 'Setup instructions'] },
 ]
 
+// Ordered to lead with web-development skills.
 export const skills: Record<string, string[]> = {
-  Programming: ['Python', 'Bash', 'JavaScript', 'SQL'],
-  Backend: ['Flask', 'FastAPI', 'REST APIs'],
-  DevOps: ['Docker', 'Kubernetes', 'Helm', 'GitHub Actions', 'Jenkins'],
-  Cloud: ['AWS', 'GCP (exposure)', 'Azure (exposure)'],
-  Testing: ['Selenium', 'Playwright', 'Postman', 'API testing'],
-  'Monitoring & Security': ['Prometheus', 'Grafana', 'Trivy', 'SonarQube'],
-  Tools: ['Git', 'GitHub', 'Linux', 'MySQL', 'PostgreSQL'],
+  Frontend: ['React', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Vite'],
+  'Backend & APIs': ['REST APIs', 'Flask', 'FastAPI', 'Postman', 'API testing'],
+  Databases: ['PostgreSQL', 'MySQL', 'SQL'],
+  'Version Control & Tools': ['Git', 'GitHub', 'Linux', 'Bash'],
+  'CI/CD & Cloud': ['GitHub Actions', 'Jenkins', 'Docker', 'AWS', 'GCP (exposure)', 'Kubernetes', 'Helm'],
+  'Testing & Quality': ['Selenium', 'Playwright', 'Trivy', 'SonarQube'],
+  'Currently Learning': ['Next.js', 'Node.js', 'Express.js'], // remove any you are not actually learning
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Box, ExternalLink, FlaskConical, Github, Linkedin, Mail, Store, Terminal } from 'lucide-react'
 import Section from './Section'
-import { currency, links, projects, services, skills, type Service } from '../data/site'
+import { availability, currency, links, projects, services, skills, type Service } from '../data/site'
 
 const icons = { terminal: Terminal, flask: FlaskConical, box: Box }
 
@@ -9,20 +9,21 @@ export function Hero() {
   return (
     <section id="top" className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-32 md:grid-cols-2">
       <div>
-        <p className="mb-3 font-mono text-sm text-cyan-600 dark:text-cyan-400">Mohd Azhar Shaikh · Software | DevOps | QA Automation</p>
-        <h1 className="text-4xl font-extrabold leading-tight md:text-6xl">I <span className="grad-text">Build, Deploy, Automate</span> &amp; Test Software.</h1>
-        <p className="mt-5 text-slate-600 dark:text-slate-400">I'm a software engineer working across backend development, cloud infrastructure, CI/CD automation, and software testing. I enjoy building practical solutions that make applications more reliable and easier to maintain.</p>
+        <p className="mb-3 font-mono text-sm text-cyan-600 dark:text-cyan-400">Mohd Azhar Shaikh · Full Stack Developer | React · TypeScript · REST APIs</p>
+        <h1 className="text-4xl font-extrabold leading-tight md:text-6xl">I <span className="grad-text">Build, Ship</span> &amp; Test Full Stack Web Apps.</h1>
+        <p className="mt-5 text-slate-600 dark:text-slate-400">I build responsive React and TypeScript interfaces, design REST APIs backed by PostgreSQL, and ship them with Git, CI/CD and Docker. I like writing clean, tested code that real users depend on, and I'm eager to learn from senior engineers on a production team.</p>
+        {availability && <p className="mt-5 inline-block rounded-full border border-emerald-500/40 px-3 py-1 text-xs text-emerald-600 dark:text-emerald-300">● {availability}</p>}
         <div className="mt-8 flex flex-wrap gap-3">
           {links.kworksProfile && <a className="btn btn-primary shadow-lg shadow-cyan-500/30" href={links.kworksProfile} target="_blank" rel="noreferrer"><Store size={16} /> Hire Me on Kwork</a>}
           <a className="btn btn-ghost" href="#projects">View My Projects</a>
-          <a className="btn btn-ghost" href="#services">Explore My Services</a>
+          <a className="btn btn-ghost" href="#contact">Contact Me</a>
           <a className="btn btn-ghost" href={links.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub Profile</a>
         </div>
       </div>
       <div className="glow rounded-xl border border-slate-200 bg-slate-900 p-5 font-mono text-sm text-slate-200 shadow-xl dark:border-white/10" aria-label="Technical stack">
         <div className="mb-3 flex gap-1.5"><i className="h-3 w-3 rounded-full bg-red-400" /><i className="h-3 w-3 rounded-full bg-yellow-400" /><i className="h-3 w-3 rounded-full bg-green-400" /></div>
         <p><span className="text-cyan-400">$</span> stack --list</p>
-        {['python  bash  sql', 'flask  fastapi', 'docker  kubernetes  helm', 'github-actions  jenkins', 'aws  prometheus  grafana', 'playwright  selenium  postman'].map(l => <p key={l} className="text-violet-300">› {l}</p>)}
+        {['react  typescript  tailwind', 'javascript  vite  git', 'rest-apis  postgresql  sql', 'flask  fastapi  postman', 'docker  github-actions  aws', 'playwright  selenium'].map(l => <p key={l} className="text-violet-300">› {l}</p>)}
         <p className="mt-2"><span className="text-cyan-400">$</span> <span className="animate-pulse">_</span></p>
       </div>
     </section>
@@ -33,8 +34,8 @@ export function About() {
   return (
     <Section id="about" title="About Me">
       <div className="max-w-3xl space-y-4 text-slate-600 dark:text-slate-400">
-        <p>I have around a year of experience across software development, DevOps and QA automation in SaaS startups, and I'm a B.Tech Computer Science and Engineering student at Medi-Caps University.</p>
-        <p>Working across those three areas means I can write a feature, containerize and ship it, and test it. I focus on practical problem-solving, clean code, automation of repetitive work, careful troubleshooting, and continuous learning. I work on Ubuntu Linux day to day.</p>
+        <p>I'm a B.Tech Computer Science and Engineering student at Medi-Caps University with around a year of hands-on experience across software development, DevOps and QA automation in SaaS startups.</p>
+        <p>I'm aiming for a Full Stack role where I can write production code from day one: React and TypeScript on the front end, REST APIs and PostgreSQL on the back end, and CI/CD, Docker and testing to keep releases reliable. I debug carefully, care about performance, and collaborate well with product and design. This portfolio is itself a React + TypeScript + Tailwind project, and every project below links to its source.</p>
       </div>
     </Section>
   )
@@ -104,7 +105,7 @@ export const Services = () => <Section id="services" title="Freelance Services">
 export function GithubSection() {
   return (
     <Section id="github" title="GitHub">
-      <p className="mb-5 text-slate-600 dark:text-slate-400">Source code for my featured projects is public.</p>
+      <p className="mb-5 text-slate-600 dark:text-slate-400">Source code for my projects is public. Browse the repositories to see how I structure and ship code.</p>
       <ul className="mb-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">{projects.filter(p => p.repo).map(p => <li key={p.repo}><a className="card block py-4 font-mono text-sm" href={p.repo} target="_blank" rel="noreferrer"><Github size={14} className="mr-1 inline" />{p.repo!.replace('https://github.com/', '')}<br /><span className="text-xs text-slate-500">{p.title}</span></a></li>)}</ul>
       <a className="btn btn-primary" href={links.github} target="_blank" rel="noreferrer"><Github size={16} /> Open GitHub Profile</a>
     </Section>
@@ -121,7 +122,7 @@ export function Contact() {
   return (
     <Section id="contact" title="Contact">
       {links.kworksProfile && <a href={links.kworksProfile} target="_blank" rel="noreferrer" className="glow mb-6 block rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 p-8 text-center text-white transition hover:opacity-95"><span className="block text-2xl font-bold">Need this built? Order on Kwork</span><span className="mt-1 block text-sm opacity-90">Secure checkout through Kwork, message me before you order</span></a>}
-      <p className="mb-5 text-slate-600 dark:text-slate-400">Have a task in mind? Reach out with a short description and I'll reply with scope and timing.</p>
+      <p className="mb-5 text-slate-600 dark:text-slate-400">Hiring for a Full Stack role, or have a task in mind? Reach out and I'll reply quickly.</p>
       <div className="flex flex-wrap gap-3">{items.map(({ label, href, Icon }) => <a key={label} className="btn btn-ghost" href={href} target={label === 'Email' ? undefined : '_blank'} rel="noreferrer"><Icon size={16} /> {label}</a>)}</div>
     </Section>
   )

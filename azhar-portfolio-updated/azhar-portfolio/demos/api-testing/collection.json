@@ -1,0 +1,22 @@
+{
+  "info": { "name": "JSONPlaceholder API Tests", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [{ "key": "baseUrl", "value": "https://jsonplaceholder.typicode.com" }],
+  "item": [
+    { "name": "GET post 1 - positive", "request": { "method": "GET", "url": "{{baseUrl}}/posts/1" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('status is 200', () => pm.response.to.have.status(200));",
+        "pm.test('has expected fields', () => { const j = pm.response.json(); pm.expect(j).to.have.all.keys('userId','id','title','body'); pm.expect(j.id).to.eql(1); });" ] } }] },
+    { "name": "GET list - positive", "request": { "method": "GET", "url": "{{baseUrl}}/posts" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('status is 200', () => pm.response.to.have.status(200));",
+        "pm.test('returns a non-empty array', () => { const j = pm.response.json(); pm.expect(j).to.be.an('array').that.is.not.empty; });" ] } }] },
+    { "name": "GET unknown post - negative", "request": { "method": "GET", "url": "{{baseUrl}}/posts/999999" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('status is 404', () => pm.response.to.have.status(404));" ] } }] },
+    { "name": "POST create post - positive", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"title\":\"hello\",\"body\":\"world\",\"userId\":1}" }, "url": "{{baseUrl}}/posts" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": [
+        "pm.test('status is 201', () => pm.response.to.have.status(201));",
+        "pm.test('echoes title and returns id', () => { const j = pm.response.json(); pm.expect(j.title).to.eql('hello'); pm.expect(j.id).to.be.a('number'); });" ] } }] }
+  ]
+}
